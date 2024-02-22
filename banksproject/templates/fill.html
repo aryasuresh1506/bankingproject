@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+   Home page
+{% endblock %}
+{% block title %}
+   Banking
+{% endblock %}
+
+{% block content %}
+<br>
+<div>
+        <a href="{% url 'banks:forum' %}">Click here to fill the form</a>
+</div>
+{% endblock %}

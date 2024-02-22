@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+    <meta name="description" content="{% block metadescription %}{% endblock %}">
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="shadow card">
+                <div class="card-body">
+                    <div class="mx-auto p-2" style="width: 200px;">
+<h3 class="card-title">LOGIN</h3>
+                    <form action="/login/" method="post">
+                        {% csrf_token %}
+                       {{form.as_p}}
+                        <input type="submit" value="Login" class="btn btn-success" href="{% url 'banks:fill' %}"></input><br>
+                        <a href="{% url 'banks:register' %}">Register here</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+{% if msg %}
+<script>
+    alert("{{msg}}");
+</script>
+{% endif %}
+</body>

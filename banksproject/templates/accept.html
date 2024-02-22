@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+   Home page
+{% endblock %}
+{% block title %}
+   Banking
+{% endblock %}
+
+{% block content %}
+<br>
+<div>
+        <p>Application accepted</p>
+    <a href="{% url 'banks:home' %}">Go To Home Page</a>
+
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+  form page
+{% endblock %}
+{% block title %}
+   Banking
+{% endblock %}
+{% block content %}
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Bank</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'banks:home' %}">Home</a>
+        </li>
+        <li><a class="nav-link active" aria-current="page" href="{% url 'banks:home' %}">Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="shadow card">
+                <div class="card-body">
+<h2>REGISTRATION</h2>
+<form action="/accept/" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+     <input type="submit" value="Submit" class="btn btn-success" href="{% url 'banks:accept' %}"></input>
+</form>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+    var branchesData = {{ form.branches_json|safe }};
+    var districtSelect = document.getElementById('id_district');
+    var branchSelect = document.getElementById('id_branch')
+
+    districtSelect.addEventListener('change', function() {
+        var selectedDistrict = this.value;
+        branchSelect.options.length = 0; // Clear existing options
+        branchSelect.options[branchSelect.options.length] = new Option('Select Branch', '');
+
+        branchesData.forEach(function(branch) {
+            if(branch.district === selectedDistrict) {
+                branchSelect.options[branchSelect.options.length] = new Option(branch.branch, branch.branch);
+            }
+        });
+    });
+});
+
+</script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

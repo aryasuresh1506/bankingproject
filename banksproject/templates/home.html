@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+   Home page
+{% endblock %}
+{% block title %}
+   Banking
+{% endblock %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+<script type="text/javascript">
+    function showDis()
+    {
+    var d=document.getElementById("d");
+    if(d.style.display==="none")
+    {
+    d.style.display="block";
+    }
+    else{
+    d.style.display="none";
+    }
+    }
+</script>
+</head>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Bank</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'banks:home' %}">Home</a>
+        </li>
+        <li>
+          <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" onclick="showDis()">
+            Branches
+          </a>
+<ul class="dropdown-menu" id="d">
+    <li><a class="dropdown-item" style="list-style-type:none;">Branch</a></li>
+      {% for d in dist %}
+            <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/{{d}}">{{d}}</a></li>
+    {% endfor %}
+            </ul>
+        </li>
+        <li><a class="nav-link active" aria-current="page" href="{% url 'banks:register' %}">Register</a></li>
+        <li><a class="nav-link active" aria-current="page" href="{% url 'banks:login' %}">Login</a></li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+<br>
+<br>
+<div>
+    <div>
+    <img class="my_image my_image_padding" src="{% static 'img/banne.png' %}" style="width:1305px; height:550px;">
+    </div>
+</div>
+<div>
+    <div>
+        <a class="btn btn-success" href="{% url 'banks:login' %}">Go to login</a>
+
+    </div>
+</div>
+{% endblock %}
